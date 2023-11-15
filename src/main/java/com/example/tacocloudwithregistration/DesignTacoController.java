@@ -1,10 +1,10 @@
 package com.example.tacocloudwithregistration;
 
-import com.example.tacocloudwithjpa.data.Ingredient;
-import com.example.tacocloudwithjpa.data.Ingredient.Type;
-import com.example.tacocloudwithjpa.data.Taco;
-import com.example.tacocloudwithjpa.data.TacoOrder;
-import com.example.tacocloudwithjpa.repositories.IngredientRepository;
+
+import com.example.tacocloudwithregistration.data.Ingredient;
+import com.example.tacocloudwithregistration.data.Taco;
+import com.example.tacocloudwithregistration.data.TacoOrder;
+import com.example.tacocloudwithregistration.repository.IngredientRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.example.tacocloudwithregistration.data.Ingredient.Type;
 
 @Slf4j
 @Controller
