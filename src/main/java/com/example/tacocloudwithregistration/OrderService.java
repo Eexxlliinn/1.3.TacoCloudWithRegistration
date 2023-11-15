@@ -1,8 +1,9 @@
 package com.example.tacocloudwithregistration;
 
-import com.example.tacocloudwithjpa.data.Taco;
-import com.example.tacocloudwithjpa.data.TacoOrder;
-import com.example.tacocloudwithjpa.repositories.OrderRepository;
+
+import com.example.tacocloudwithregistration.data.Taco;
+import com.example.tacocloudwithregistration.data.TacoOrder;
+import com.example.tacocloudwithregistration.repository.OrderRepository;
 import org.springframework.stereotype.Component;
 
 @Component
