@@ -1,7 +1,7 @@
 package com.example.tacocloudwithregistration;
 
-import com.example.tacocloudwithjpa.data.Ingredient;
-import com.example.tacocloudwithjpa.repositories.IngredientRepository;
+import com.example.tacocloudwithregistration.data.Ingredient;
+import com.example.tacocloudwithregistration.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
