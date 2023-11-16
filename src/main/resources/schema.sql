@@ -6,6 +6,7 @@ drop table Taco_Order if exists cascade;
 drop table Taco if exists cascade;
 drop table Ingredient_Ref if exists cascade;
 drop table Ingredient if exists cascade;
+drop table User_Info if exists cascade;
 create table if not exists Taco_Order (
     id identity(1, 1) primary key,
     delivery_Name varchar(50) not null,
@@ -32,6 +33,17 @@ create table if not exists Ingredient (
     id varchar(4) primary key,
     name varchar(50) not null,
     type varchar(10) not null
+);
+create table if not exists User_Info (
+    id identity(1, 1) primary key,
+    username varchar(50) not null,
+    password varchar(50) not null,
+    fullname varchar(50) not null,
+    street varchar(50) not null,
+    city varchar(50) not null,
+    state varchar(50) not null,
+    zip varchar(50) not null,
+    phone_Number varchar(50) not null
 );
 alter table Ingredient_Ref add foreign key (ingredient_id) references Ingredient(id);
 alter table Ingredient_Ref add foreign key (taco_id) references Taco(id);
