@@ -19,7 +19,7 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 @RequiredArgsConstructor
-public class User implements UserDetails {
+public class UserInfo implements UserDetails {
 
     private static final long serialVersionUID = 1;
 
@@ -34,7 +34,7 @@ public class User implements UserDetails {
     private final String city;
     private final String state;
     private final String zip;
-    private final String phoneNumber;
+    private final String phone_Number;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
