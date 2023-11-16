@@ -2,6 +2,7 @@ delete from Ingredient;
 delete from Ingredient_Ref;
 delete from Taco_Order;
 delete from Taco;
+delete from "User";
 insert into Ingredient(id, name, type) values ('FLTO', 'Flour Tortilla', 'WRAP');
 insert into Ingredient(id, name, type) values ('COTO', 'Corn Tortilla', 'WRAP');
 insert into Ingredient(id, name, type) values ('GRBF', 'Ground Beef', 'PROTEIN');
@@ -12,6 +13,7 @@ insert into Ingredient(id, name, type) values ('CHED', 'Cheddar', 'CHEESE');
 insert into Ingredient(id, name, type) values ('JACK', 'Monterrey Jack', 'CHEESE');
 insert into Ingredient(id, name, type) values ('SLSA', 'Salsa', 'SAUCE');
 insert into Ingredient(id, name, type) values ('SRCR', 'Sour Cream', 'SAUCE');
+insert into User_Info(id, username, password, fullname, street, city, state, zip, phone_Number) values ('1','Eugene','1111','1','1','2','3','4','4');
 
 drop sequence TACO_ORDER_SEQ if exists;
 CREATE SEQUENCE TACO_ORDER_SEQ START WITH 1 INCREMENT BY 50;
