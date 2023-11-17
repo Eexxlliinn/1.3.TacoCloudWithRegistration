@@ -10,7 +10,7 @@
 <body>
     <h1>Register</h1>
     <img src="" alt="">
-    <form method="post" action="@{/register}" id="registerForm">
+    <form method="post" th:action="@{/register}" id="registerForm">
         <label th:for="username">Username: </label>
         <input type="text" name="username"><br><br>
 
