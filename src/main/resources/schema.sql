@@ -37,7 +37,7 @@ create table if not exists Ingredient (
 create table if not exists User_Info (
     id identity(1, 1) primary key,
     username varchar(50) not null,
-    password varchar(50) not null,
+    password varchar(100) not null,
     fullname varchar(50) not null,
     street varchar(50) not null,
     city varchar(50) not null,
