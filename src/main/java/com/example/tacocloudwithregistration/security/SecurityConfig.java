@@ -4,17 +4,22 @@ import com.example.tacocloudwithregistration.data.UserInfo;
 import com.example.tacocloudwithregistration.repository.UserInfoRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.header.writers.frameoptions.WhiteListedAllowFromStrategy;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import java.util.Arrays;
+
 @Configuration
-public class SecurityConfig {
+public class SecurityConfig extends SecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -38,9 +43,11 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers(mvc.pattern("/design"), mvc.pattern("/orders")).hasRole("USER")
-                .requestMatchers(mvc.pattern("/"), mvc.pattern("/**")).permitAll()
-                );
-        http
+                .requestMatchers(mvc.pattern("/"), mvc.pattern("/**"), mvc.pattern("/h2-console/**")).permitAll()
+                )
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers(mvc.pattern("/h2-console/**"))  // disable CSRF for H2
+                )
                 .formLogin(form -> form
                     .loginPage("/login")
                     .permitAll()
