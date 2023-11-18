@@ -37,7 +37,7 @@ public class OrderController {
         if (errors.hasErrors()) {
             return "orderForm";
         }
-        log.info("Order submitted: {}", order);
+        log.info("Order for saving: {}", order);
         orderRepo.save(order);
         sessionStatus.setComplete();
         return "redirect:/";
