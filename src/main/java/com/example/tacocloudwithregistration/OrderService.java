@@ -4,8 +4,9 @@ package com.example.tacocloudwithregistration;
 import com.example.tacocloudwithregistration.data.Taco;
 import com.example.tacocloudwithregistration.data.TacoOrder;
 import com.example.tacocloudwithregistration.repository.OrderRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
+@Slf4j
 @Component
 public class OrderService {
     private final OrderRepository orderRepository;
@@ -20,6 +21,11 @@ public class OrderService {
             taco.setTacoOrder(savedOrder);
         }
         savedOrder = orderRepository.save(entity);
+        log.info("Order saved with id: {}", entity.getId());
+        for (Taco taco : entity.getTacos()) {
+            log.info("Taco id: {}", taco.getId());
+        }
         return savedOrder;
     }
+
 }
