@@ -18,8 +18,10 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import java.util.Arrays;
 
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+
 @Configuration
-public class SecurityConfig extends SecurityConfigurerAdapter {
+public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -44,9 +46,12 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers(mvc.pattern("/design"), mvc.pattern("/orders")).hasRole("USER")
                 .requestMatchers(mvc.pattern("/"), mvc.pattern("/**"), mvc.pattern("/h2-console/**")).permitAll()
+                .requestMatchers(toH2Console()).permitAll()
+                .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers(mvc.pattern("/h2-console/**"))  // disable CSRF for H2
+                        .ignoringRequestMatchers(toH2Console())  // disable CSRF for H2
                 )
                 .formLogin(form -> form
                     .loginPage("/login")
