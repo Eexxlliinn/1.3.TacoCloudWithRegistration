@@ -49,7 +49,10 @@ public class SecurityConfig {
                 .requestMatchers(toH2Console()).permitAll()
                 .anyRequest().authenticated()
                 )
-
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers(mvc.pattern("/h2-console/**"))  // disable CSRF for H2
+                        .ignoringRequestMatchers(toH2Console())  // disable CSRF for H2
+                )
                 .formLogin(form -> form
                     .loginPage("/login")
                     .permitAll()
