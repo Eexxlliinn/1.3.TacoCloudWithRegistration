@@ -51,7 +51,7 @@ public class SecurityConfig {
         MvcRequestMatcher.Builder mvc = new MvcRequestMatcher.Builder(introspector);
         http
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers(mvc.pattern("/"), mvc.pattern("/**"), mvc.pattern("/h2-console/**")).permitAll()
+                .requestMatchers(mvc.pattern("/"), mvc.pattern("/**")).permitAll()
                 .requestMatchers(toH2Console()).permitAll()
                 .requestMatchers(mvc.pattern("/design"), mvc.pattern("/orders")).hasRole("USER")
                 .anyRequest().authenticated()
@@ -59,11 +59,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(csrfTokenRepository())
                         .ignoringRequestMatchers(toH2Console())  // disable CSRF for H2
-                        .ignoringRequestMatchers(mvc.pattern("/h2-console/**"))  // disable CSRF for H2
                 )
                 .formLogin(form -> form
-                    .loginPage("/login")
-                    .permitAll()
+                    .loginPage("/login").permitAll()
                     .defaultSuccessUrl("/design")
                 )
                 .headers(headers ->
